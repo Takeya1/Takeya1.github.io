@@ -245,16 +245,56 @@
             max-width: 300px;
             width: 300px;
         }
+
+        /* FIXED: Profile image with proper proportions */
         .profile-image {
-            width: 300px;
-            height: 300px;
-            aspect-ratio: 2801/3734;
+            width: 100%;
+            max-width: 300px;
+            height: auto;
             border-radius: 20px;
             object-fit: cover;
             box-shadow: var(--shadow);
             transition: transform 0.3s ease;
             margin: 0 auto;
             display: block;
+        }
+
+        /* Alternative: If you want a perfect circle or square */
+        .profile-image-square {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .profile-image-circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Placeholder styling for when no image is present */
+        .profile-placeholder {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            background: var(--gradient-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            box-shadow: var(--shadow);
+            margin: 0 auto;
         }
 
         .about-text h3 {
@@ -606,6 +646,21 @@
             .timeline-item {
                 margin-left: 1rem;
             }
+
+            /* Make profile image smaller on mobile */
+            .profile-image,
+            .profile-image-square,
+            .profile-image-circle,
+            .profile-placeholder {
+                width: 250px;
+                height: 250px;
+            }
+
+            .profile-image {
+                width: 100%;
+                max-width: 250px;
+                height: auto;
+            }
         }
 
         /* Mobile menu */
@@ -669,8 +724,8 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="profile.jpg" alt="Lesther Ouma" class="profile-placeholder">
-                    <!-- <div class="profile-placeholder"> -->
+                    <!-- Replace with your actual image: <img src="profile.jpg" alt="Lesther Ouma" class="profile-image"> -->
+                    <div class="profile-placeholder">
                         <i class="fas fa-user"></i>
                     </div>
                 </div>
@@ -934,4 +989,19 @@
                         </div>
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-paper-plane"></i>
-                
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lesther Ouma. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
