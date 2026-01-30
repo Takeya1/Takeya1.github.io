@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Lesther Ouma</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-grid"></div>
+    <canvas id="dna-canvas"></canvas>
+    <div class="particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: -3s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: -6s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: -9s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: -12s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: -15s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: -2s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: -7s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: -11s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-dna"></i></div>
+                <span>lesther.dev</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="nav-cta">Let's Talk</a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" id="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="experience.html">Experience</a>
+        <a href="projects.html">Projects</a>
+        <a href="research.html">Research</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="page-header section">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Get In Touch</div>
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">
+                    Interested in collaboration, research opportunities, or just want to chat about
+                    computational biology? I'd love to hear from you.
+                </p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <h3>Contact Information</h3>
+                    <p>
+                        I'm always open to discussing new research opportunities,
+                        collaborative projects, or interesting problems in computational biology
+                        and data science.
+                    </p>
+                    <div class="contact-links">
+                        <a href="mailto:lestherouma@gmail.com" class="contact-link">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <div>Email</div>
+                                <span>lestherouma@gmail.com</span>
+                            </div>
+                        </a>
+                        <a href="https://linkedin.com/in/lesther-ouma-102a312b6" class="contact-link" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                            <div>
+                                <div>LinkedIn</div>
+                                <span>Connect with me</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com/Takeya1" class="contact-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                            <div>
+                                <div>GitHub</div>
+                                <span>View my code</span>
+                            </div>
+                        </a>
+                        <div class="contact-link">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <div>Location</div>
+                                <span>Boston, MA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form fade-in">
+                    <form id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="What's this about?">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Your message..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">&copy; 2025 Lesther Ouma. Built with code and curiosity.</p>
+            <div class="footer-social">
+                <a href="mailto:lestherouma@gmail.com" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://linkedin.com/in/lesther-ouma-102a312b6" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/Takeya1" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

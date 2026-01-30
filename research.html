@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research | Lesther Ouma</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-grid"></div>
+    <canvas id="dna-canvas"></canvas>
+    <div class="particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: -3s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: -6s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: -9s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: -12s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: -15s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: -2s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: -7s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: -11s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-dna"></i></div>
+                <span>lesther.dev</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="research.html" class="active">Research</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="nav-cta">Let's Talk</a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" id="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="experience.html">Experience</a>
+        <a href="projects.html">Projects</a>
+        <a href="research.html">Research</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Research/Publications Section -->
+    <section class="page-header section">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Research Interests</div>
+                <h2 class="section-title">Areas of Focus</h2>
+                <p class="section-subtitle">
+                    Current research directions and ongoing investigations.
+                </p>
+            </div>
+            <div class="publications-list">
+                <div class="pub-card fade-in">
+                    <div class="pub-icon"><i class="fas fa-brain"></i></div>
+                    <div class="pub-content">
+                        <h4>Computational Approaches in Neurological Research</h4>
+                        <p class="pub-meta">Massachusetts General Hospital | Ongoing</p>
+                        <p class="pub-description">
+                            Developing computational tools and data management systems to support
+                            neurological research, focusing on data organization and analysis pipelines.
+                        </p>
+                    </div>
+                    <span class="pub-status ongoing">Ongoing</span>
+                </div>
+                <div class="pub-card fade-in">
+                    <div class="pub-icon"><i class="fas fa-microscope"></i></div>
+                    <div class="pub-content">
+                        <h4>Automated Image Analysis for Cell Biology</h4>
+                        <p class="pub-meta">Bioinformatics Collaboration | Active Development</p>
+                        <p class="pub-description">
+                            Building robust cell counting algorithms for time-lapse microscopy,
+                            enabling quantitative analysis of cell behavior over time.
+                        </p>
+                    </div>
+                    <span class="pub-status ongoing">Ongoing</span>
+                </div>
+                <div class="pub-card fade-in">
+                    <div class="pub-icon"><i class="fas fa-chart-bar"></i></div>
+                    <div class="pub-content">
+                        <h4>Interactive Data Visualization for Research</h4>
+                        <p class="pub-meta">Mind and Data Science Lab | Contributing</p>
+                        <p class="pub-description">
+                            Contributing to tools that translate complex datasets into
+                            intuitive visual representations for researchers across disciplines.
+                        </p>
+                    </div>
+                    <span class="pub-status ongoing">Ongoing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">&copy; 2025 Lesther Ouma. Built with code and curiosity.</p>
+            <div class="footer-social">
+                <a href="mailto:lestherouma@gmail.com" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://linkedin.com/in/lesther-ouma-102a312b6" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/Takeya1" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
