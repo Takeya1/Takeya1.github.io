@@ -1,187 +1,187 @@
-// DNA Helix Animation
-const canvas = document.getElementById('dna-canvas');
-const ctx = canvas.getContext('2d');
-let animationId;
-let time = 0;
+(function () {
+  "use strict";
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
+  /* ---------- Theme ---------- */
+  var root = document.documentElement;
+  window.Theme = {
+    get: function () { return root.getAttribute("data-theme") || "light"; },
+    set: function (v) {
+      root.setAttribute("data-theme", v);
+      try { localStorage.setItem("lo-theme", v); } catch (e) {}
+    },
+    toggle: function () { this.set(this.get() === "dark" ? "light" : "dark"); }
+  };
+  (function () {
+    var saved;
+    try { saved = localStorage.getItem("lo-theme"); } catch (e) {}
+    if (saved) root.setAttribute("data-theme", saved);
+  })();
 
-function drawDNAHelix() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  function ready(fn) {
+    if (document.readyState !== "loading") fn();
+    else document.addEventListener("DOMContentLoaded", fn);
+  }
 
-    const centerX = canvas.width * 0.85;
-    const amplitude = 80;
-    const wavelength = 150;
-    const spacing = 20;
+  ready(function () {
+    var nav = document.getElementById("nav");
 
-    for (let y = -100; y < canvas.height + 100; y += spacing) {
-        const offset = (time + y * 0.02);
-        const x1 = centerX + Math.sin(offset) * amplitude;
-        const x2 = centerX - Math.sin(offset) * amplitude;
+    /* ---------- Theme toggle ---------- */
+    var tt = document.getElementById("themeToggle");
+    if (tt) tt.addEventListener("click", function () { window.Theme.toggle(); });
 
-        // Draw connecting lines
-        ctx.beginPath();
-        ctx.moveTo(x1, y);
-        ctx.lineTo(x2, y);
-        ctx.strokeStyle = `rgba(6, 182, 212, ${0.1 + Math.abs(Math.sin(offset)) * 0.1})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
+    /* ---------- Nav scrolled border ---------- */
+    function onScroll() {
+      if (window.scrollY > 8) nav.classList.add("scrolled");
+      else nav.classList.remove("scrolled");
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
 
-        // Draw nodes
-        const size1 = 3 + Math.abs(Math.sin(offset)) * 2;
-        const size2 = 3 + Math.abs(Math.cos(offset)) * 2;
-
-        ctx.beginPath();
-        ctx.arc(x1, y, size1, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(6, 182, 212, ${0.3 + Math.abs(Math.sin(offset)) * 0.3})`;
-        ctx.fill();
-
-        ctx.beginPath();
-        ctx.arc(x2, y, size2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(168, 85, 247, ${0.3 + Math.abs(Math.cos(offset)) * 0.3})`;
-        ctx.fill();
+    /* ---------- Mobile menu ---------- */
+    var menuBtn = document.getElementById("menuBtn");
+    var mobileMenu = document.getElementById("mobileMenu");
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener("click", function () { mobileMenu.classList.toggle("open"); });
+      mobileMenu.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () { mobileMenu.classList.remove("open"); });
+      });
     }
 
-    time += 0.02;
-    animationId = requestAnimationFrame(drawDNAHelix);
-}
-
-// Navigation scroll effect
-const navbar = document.getElementById('navbar');
-if (navbar) {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+    /* ---------- Scrollspy ---------- */
+    var linkMap = {};
+    document.querySelectorAll(".nav-links a").forEach(function (a) {
+      var id = a.getAttribute("href").slice(1);
+      linkMap[id] = a;
     });
-}
-
-// Scroll animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          Object.keys(linkMap).forEach(function (k) { linkMap[k].classList.remove("active"); });
+          if (linkMap[en.target.id]) linkMap[en.target.id].classList.add("active");
         }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+    ["about","skills","experience","projects","research","github","contact"].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) spy.observe(el);
     });
-}, observerOptions);
 
-document.querySelectorAll('.fade-in').forEach(el => {
-    observer.observe(el);
-});
-
-// Smooth scroll for navigation links (only for same-page anchors)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#') {
-            e.preventDefault();
-            const target = document.querySelector(href);
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+    /* ---------- Reveal on scroll ---------- */
+    var ro = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          var el = en.target;
+          var sibs = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+          el.style.transitionDelay = Math.min(sibs, 4) * 60 + "ms";
+          el.classList.add("in");
+          obs.unobserve(el);
         }
-    });
-});
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.06 });
+    document.querySelectorAll(".reveal").forEach(function (el) { ro.observe(el); });
 
-// Form submission
-const contactForm = document.getElementById('contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(this);
-        const submitButton = this.querySelector('button[type="submit"]');
-        const originalText = submitButton.innerHTML;
-        
-        // Show loading state
-        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        submitButton.disabled = true;
-        
-        try {
-            const response = await fetch(this.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
+    /* ---------- Stat count-up ---------- */
+    var counted = false;
+    var statWrap = document.querySelector(".stats");
+    if (statWrap) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting && !counted) {
+            counted = true;
+            document.querySelectorAll(".num[data-count]").forEach(function (el) {
+              var target = parseInt(el.getAttribute("data-count"), 10);
+              var suffix = el.getAttribute("data-suffix") || "";
+              var dur = 900, start = performance.now();
+              function tick(now) {
+                var p = Math.min((now - start) / dur, 1);
+                var eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.round(eased * target) + suffix;
+                if (p < 1) requestAnimationFrame(tick);
+              }
+              requestAnimationFrame(tick);
             });
-            
-            if (response.ok) {
-                alert('Thank you for your message! I\'ll get back to you soon.');
-                this.reset();
-            } else {
-                alert('Oops! There was a problem sending your message. Please try again or contact me directly at lestherouma@gmail.com');
-            }
-        } catch (error) {
-            alert('Oops! There was a problem sending your message. Please try again or contact me directly at lestherouma@gmail.com');
-        } finally {
-            // Reset button
-            submitButton.innerHTML = originalText;
-            submitButton.disabled = false;
-        }
-    });
-}
-
-// Mobile menu toggle
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileMenuClose = document.getElementById('mobile-menu-close');
-
-if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-}
-
-if (mobileMenuClose && mobileMenu) {
-    mobileMenuClose.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-    });
-}
-
-// Close mobile menu when clicking a link
-if (mobileMenu) {
-    mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
+          }
         });
-    });
-}
+      }, { threshold: 0.4 }).observe(statWrap);
+    }
 
-// Initialize
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-drawDNAHelix();
-
-// Set active nav link based on current page
-function setActiveNavLink() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
+    /* ---------- DNA strip ---------- */
+    var strip = document.getElementById("dnaStrip");
+    if (strip) {
+      var seq = "ATGCGATCAGTCATGCTAGCATCGTACGATCGTAGCTAGCATCGTA";
+      var html = "";
+      for (var rep = 0; rep < 2; rep++) {
+        for (var i = 0; i < seq.length; i++) {
+          html += '<span class="base" data-b="' + seq[i] + '">' + seq[i] + "</span>";
         }
-    });
-}
+      }
+      strip.innerHTML = html;
+    }
 
-setActiveNavLink();
+    /* ---------- Project pointer glow ---------- */
+    document.querySelectorAll(".proj").forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        card.style.setProperty("--my", (e.clientY - r.top) + "px");
+      });
+    });
+
+    /* ---------- Contact form — Formspree ---------- */
+    var form = document.getElementById("contactForm");
+    if (form) {
+      var fields = {
+        name:    form.querySelector('[data-field="name"]'),
+        email:   form.querySelector('[data-field="email"]'),
+        message: form.querySelector('[data-field="message"]')
+      };
+
+      function validateField(key) {
+        var wrap = fields[key];
+        var input = wrap.querySelector("input, textarea");
+        var val = input.value.trim();
+        var ok = key === "email" ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) : val.length > 0;
+        wrap.classList.toggle("err", !ok);
+        return ok;
+      }
+
+      Object.keys(fields).forEach(function (key) {
+        var input = fields[key].querySelector("input, textarea");
+        input.addEventListener("input", function () {
+          if (fields[key].classList.contains("err")) validateField(key);
+        });
+      });
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        var allOk = Object.keys(fields).map(validateField).every(Boolean);
+        if (!allOk) return;
+
+        var btn = form.querySelector("button[type=submit]");
+        var orig = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = 'Sending… <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>';
+
+        try {
+          var res = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { Accept: "application/json" }
+          });
+          if (res.ok) {
+            document.getElementById("formFields").style.display = "none";
+            document.getElementById("formOk").classList.add("show");
+          } else {
+            btn.disabled = false;
+            btn.innerHTML = orig;
+            alert("Something went wrong — please email lestherouma@gmail.com directly.");
+          }
+        } catch (_) {
+          btn.disabled = false;
+          btn.innerHTML = orig;
+          alert("Something went wrong — please email lestherouma@gmail.com directly.");
+        }
+      });
+    }
+  });
+})();

@@ -1,211 +1,425 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesther Ouma | Computational Biology & Software Engineering</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lesther Ouma · Computational Biology & Software Engineering</title>
+<script>try{var _t=localStorage.getItem("lo-theme");if(_t)document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <!-- Background Elements -->
-    <div class="bg-grid"></div>
-    <canvas id="dna-canvas"></canvas>
-    <div class="particles">
-        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="particle" style="left: 20%; animation-delay: -3s;"></div>
-        <div class="particle" style="left: 30%; animation-delay: -6s;"></div>
-        <div class="particle" style="left: 40%; animation-delay: -9s;"></div>
-        <div class="particle" style="left: 50%; animation-delay: -12s;"></div>
-        <div class="particle" style="left: 60%; animation-delay: -15s;"></div>
-        <div class="particle" style="left: 70%; animation-delay: -2s;"></div>
-        <div class="particle" style="left: 80%; animation-delay: -7s;"></div>
-        <div class="particle" style="left: 90%; animation-delay: -11s;"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Lesther Ouma — home">
+      <span class="mark">LO</span>
+      <span class="name">Lesther <span>Ouma</span></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light / dark">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a class="btn btn-primary desktop-cta" href="#contact">Let's talk</a>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#experience">Experience</a>
+  <a href="#projects">Projects</a>
+  <a href="#research">Research</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<span id="top"></span>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="avail reveal"><span class="dot"></span>Available for research opportunities</span>
+      <h1 class="reveal">Lesther Ouma</h1>
+      <p class="role reveal"><span class="ln"></span>Computational Biologist &amp; Software Engineer</p>
+      <p class="lede reveal">I build data-driven tools at the intersection of biology and software, pipelines and systems that turn complex biological data into insight researchers can act on.</p>
+      <div class="cta reveal">
+        <a class="btn btn-primary btn-lg" href="#projects">View projects
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#contact">Get in touch</a>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><div class="num" data-count="3" data-suffix="+">3+</div><div class="lbl">Research labs</div></div>
+        <div class="stat"><div class="num" data-count="5" data-suffix="+">5+</div><div class="lbl">Projects shipped</div></div>
+        <div class="stat"><div class="num" data-count="2" data-suffix="">2</div><div class="lbl">Disciplines</div></div>
+      </div>
     </div>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <div class="logo-icon"><i class="fas fa-dna"></i></div>
-                <span>takeya1</span>
+    <div class="instrument reveal">
+      <div class="code-card">
+        <div class="code-head">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="fname">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>
+            cell_analysis.py
+          </span>
+        </div>
+        <div class="code-body">
+          <pre><span class="ln"><span class="gut">1</span><span><span class="tok-kw">import</span> pandas <span class="tok-kw">as</span> pd</span></span><span class="ln"><span class="gut">2</span><span><span class="tok-kw">import</span> numpy <span class="tok-kw">as</span> np</span></span><span class="ln"><span class="gut">3</span><span><span class="tok-kw">from</span> skimage <span class="tok-kw">import</span> <span class="tok-mod">measure</span></span></span><span class="ln"><span class="gut">4</span><span> </span></span><span class="ln"><span class="gut">5</span><span><span class="tok-kw">def</span> <span class="tok-fn">count_cells</span>(image_stack):</span></span><span class="ln"><span class="gut">6</span><span>    <span class="tok-com"># process time-lapse frames</span></span></span><span class="ln"><span class="gut">7</span><span>    results = []</span></span><span class="ln"><span class="gut">8</span><span>    <span class="tok-kw">for</span> frame <span class="tok-kw">in</span> image_stack:</span></span><span class="ln"><span class="gut">9</span><span>        labels = measure.<span class="tok-fn">label</span>(frame)</span></span><span class="ln"><span class="gut">10</span><span>        props = measure.<span class="tok-fn">regionprops</span>(labels)</span></span><span class="ln"><span class="gut">11</span><span>        results.<span class="tok-fn">append</span>(<span class="tok-fn">len</span>(props))</span></span><span class="ln"><span class="gut">12</span><span>    <span class="tok-kw">return</span> pd.<span class="tok-fn">DataFrame</span>(results)<span class="caret"></span></span></span></pre>
+        </div>
+      </div>
+
+      <div class="dna-card">
+        <div class="dna-top">
+          <span class="t">Sequence analysis</span>
+          <span class="s"><span class="live"></span>processing genomic data</span>
+        </div>
+        <div class="dna-track">
+          <div class="dna-strip" id="dnaStrip"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">About</span>
+      <h2>Decoding biology through code.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="portrait reveal">
+        <span class="corner"></span>
+        <img src="profile.jpg" alt="Lesther Ouma" />
+      </div>
+      <div class="about-body reveal">
+        <p>As a Computer Science student minoring in Human Biology at Sattler College, I build the digital infrastructure that moves biomedical research forward.</p>
+
+        <p>I focus on bridging the gap between raw biological data and scientific discovery by engineering high-performance analysis pipelines, interactive visualization tools, <strong>and intelligent machine learning workflows</strong>. My approach combines rigorous software development with a deep respect for human biology, ensuring that complex datasets are not just processed, but made genuinely legible, <strong>predictive,</strong> and actionable for researchers. <strong>By integrating targeted AI models into scalable systems,</strong> I am dedicated to creating tools that solve hard problems and seamlessly integrate into the modern lab workflow.</p>
+        <div class="cred">
+          <div class="cred-row"><span class="k">Education</span><span class="v">Sattler College <span>B.S. Computer Science · Minor, Human Biology</span></span></div>
+          <div class="cred-row"><span class="k">Research</span><span class="v">Massachusetts General Hospital <span>Neurological research · data systems &amp; pipelines</span></span></div>
+          <div class="cred-row"><span class="k">Lab</span><span class="v">Mind &amp; Data Science Lab <span>Data Science</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Skills</span>
+      <h2>A toolkit spanning two fields.</h2>
+      <p>Engineering rigor applied to scientific questions, from raw signal to reproducible insight.</p>
+    </div>
+    <div class="skill-cols">
+      <div class="skill-col reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+        <span class="cap">Engineering</span>
+        <h3>Software & Systems</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">SQL</span>
+          <span class="tag">C / C++</span><span class="tag">R</span><span class="tag">Git</span>
+          <span class="tag">Linux</span><span class="tag">Docker</span>
+        </div>
+      </div>
+      <div class="skill-col reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v6.5L4.2 18A2 2 0 0 0 6 21h12a2 2 0 0 0 1.8-3L14 8.5V2"/><path d="M8.5 2h7"/></svg></div>
+        <span class="cap">Science</span>
+        <h3>Computational Biology</h3>
+        <div class="tags">
+          <span class="tag">Bioinformatics</span><span class="tag">Genomics</span><span class="tag">Image Analysis</span>
+          <span class="tag">scikit-image</span><span class="tag">OpenCV</span><span class="tag">ggplot2</span><span class="tag">Matplotlib</span>
+        </div>
+      </div>
+      <div class="skill-col reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div>
+        <span class="cap">Data</span>
+        <h3>Analysis & ML</h3>
+        <div class="tags">
+          <span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">scikit-learn</span>
+          <span class="tag">D3.js</span><span class="tag">Statistics</span><span class="tag">Pipelines</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Experience</span>
+      <h2>My Work</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item reveal">
+        <div class="tl-date">Apr 2026 — <span class="now">Present</span></div>
+        <div class="tl-body">
+          <h3>Student Council President</h3>
+          <p class="org">Sattler College · Boston, MA</p>
+          <p>Represent student interests to college administration and lead campus-wide governance — chairing council meetings, coordinating cross-departmental programs, and driving initiatives that shape the student experience.</p>
+          <div class="chips"><span class="chip">Leadership</span><span class="chip">Governance</span><span class="chip">Communication</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-date">Jun 2025 — Mar 2026</div>
+        <div class="tl-body">
+          <h3>Undergraduate Research Assistant</h3>
+          <p class="org">Mind &amp; Data Science Lab · Massachusetts General Hospital</p>
+          <p>Built a cross-study gene expression portal in R/Shiny — enabling researchers to compare Alzheimer's disease vs. control conditions across 15+ independent datasets in a single interactive interface.</p>
+          <div class="chips"><span class="chip">R</span><span class="chip">Shiny</span><span class="chip">scRNA-seq</span><span class="chip">AWS</span><span class="chip">Bioinformatics</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-date">2024 — Aug 2025</div>
+        <div class="tl-body">
+          <h3>NeuroResearch Intern</h3>
+          <p class="org">Massachusetts General Hospital · Neurology Department</p>
+          <p>Designed and implemented a database management system for alumni records and supported team onboarding — building infrastructure that keeps research operations running smoothly behind the scenes.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Database Design</span><span class="chip">Data Management</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-date">2024 — <span class="now">Present</span></div>
+        <div class="tl-body">
+          <h3>Bioinformatics Research Collaborator</h3>
+          <p class="org">Local Laboratory Partnership · Boston, MA</p>
+          <p>Built a Python-based cell counting tool for time-lapse microscopy — automating analysis that previously required manual review, with accuracy tuned for real resource constraints in a working lab environment.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">Image Analysis</span><span class="chip">OpenCV</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-date">2023 — Present</div>
+        <div class="tl-body">
+          <h3>B.S. Computer Science · Minor, Human Biology</h3>
+          <p class="org">Sattler College · Boston, MA</p>
+          <p>Studying computer science alongside human biology — building the cross-disciplinary foundation to work fluently across software engineering and the life sciences.</p>
+          <div class="chips"><span class="chip">Algorithms</span><span class="chip">Parallel Systems</span><span class="chip">Genetics</span><span class="chip">Human Biology</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Projects</span>
+      <h2>Selected work.</h2>
+      <p>Tools built to solve real problems in the lab — from microscopy to data infrastructure.</p>
+    </div>
+    <div class="proj-grid">
+      <article class="proj reveal">
+        <span class="glow"></span>
+        <div class="proj-top">
+          <span class="cat">Data Visualization</span>
+          <div class="links">
+            <a href="https://alzdatalens.partners.org/?page=cross-study" target="_blank" rel="noopener" aria-label="Live site">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="skills.html">Skills</a></li>
-                <li><a href="experience.html">Experience</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <a href="contact.html" class="nav-cta">Let's Talk</a>
-            <button class="mobile-menu-btn" id="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
+          </div>
         </div>
-    </nav>
+        <h3>Datalens Platform</h3>
+        <p>Contributed to an interactive visualization platform at the Mind &amp; Data Science Lab enabling researchers to explore complex behavioral and cognitive datasets through intuitive visual interfaces.</p>
+        <div class="stack"><span class="tag">JavaScript</span><span class="tag">D3.js</span><span class="tag">Python</span><span class="tag">ML</span></div>
+      </article>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu">
-        <button class="mobile-menu-close" id="mobile-menu-close">
-            <i class="fas fa-times"></i>
-        </button>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="skills.html">Skills</a>
-        <a href="experience.html">Experience</a>
-        <a href="projects.html">Projects</a>
-        <a href="research.html">Research</a>
-        <a href="contact.html">Contact</a>
+      <article class="proj reveal">
+        <span class="glow"></span>
+        <div class="proj-top">
+          <span class="cat">Image Analysis</span>
+          <div class="links">
+            <a href="https://github.com/Takeya1" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.93.85.09-.66.35-1.12.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+            </a>
+          </div>
+        </div>
+        <h3>Automated Cell-Counting Pipeline</h3>
+        <p>Python pipeline for automated cell quantification across time-lapse microscopy stacks — labels regions, measures properties, and exports tidy per-frame counts for downstream analysis.</p>
+        <div class="stack"><span class="tag">Python</span><span class="tag">scikit-image</span><span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">OpenCV</span></div>
+      </article>
+
+      <article class="proj reveal">
+        <span class="glow"></span>
+        <div class="proj-top">
+          <span class="cat">Data Infrastructure</span>
+          <div class="links">
+            <a href="https://github.com/Takeya1" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.93.85.09-.66.35-1.12.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+            </a>
+          </div>
+        </div>
+        <h3>Neuro Alumni Database System</h3>
+        <p>Structured database system for the MGH Neurology Department — turning scattered alumni records into a queryable, reproducible source of truth with automated reporting.</p>
+        <div class="stack"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Schema Design</span></div>
+      </article>
+
+      <article class="proj reveal">
+        <span class="glow"></span>
+        <div class="proj-top">
+          <span class="cat">Bioinformatics</span>
+          <div class="links">
+            <a href="https://github.com/Takeya1" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.93.85.09-.66.35-1.12.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+            </a>
+          </div>
+        </div>
+        <h3>DNA Sequence Analyzer</h3>
+        <p>Utilities for parsing and analyzing genomic sequence data — base composition, motif scanning and summary statistics. Built as part of CS50, packaged for reuse across projects.</p>
+        <div class="stack"><span class="tag">Python</span><span class="tag">Algorithms</span><span class="tag">Genomics</span></div>
+      </article>
     </div>
+  </div>
+</section>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="pulse"></span>
-                    Available for Research Opportunities
-                </div>
-                <h1>Lesther Ouma</h1>
-                <p class="hero-subtitle">Computational Biologist & Software Engineer</p>
-                <p class="hero-description">
-                    Building bridges between biological systems and computational solutions.
-                    I develop data-driven tools that accelerate biomedical research and translate
-                    complex biological data into actionable insights.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-value">3+</div>
-                        <div class="stat-label">Research Labs</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">5+</div>
-                        <div class="stat-label">Projects</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">2</div>
-                        <div class="stat-label">Disciplines</div>
-                    </div>
-                </div>
-                <div class="hero-buttons">
-                    <a href="projects.html" class="btn btn-primary">
-                        <i class="fas fa-code"></i> View Projects
-                    </a>
-                    <a href="contact.html" class="btn btn-secondary">
-                        <i class="fas fa-envelope"></i> Contact Me
-                    </a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="code-window">
-                    <div class="code-header">
-                        <span class="code-dot red"></span>
-                        <span class="code-dot yellow"></span>
-                        <span class="code-dot green"></span>
-                        <span class="code-title">cell_analysis.py</span>
-                    </div>
-                    <div class="code-content">
-                        <div class="code-line">
-                            <span class="line-number">1</span>
-                            <span><span class="code-keyword">import</span> <span class="code-function">pandas</span> <span class="code-keyword">as</span> pd</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">2</span>
-                            <span><span class="code-keyword">import</span> <span class="code-function">numpy</span> <span class="code-keyword">as</span> np</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">3</span>
-                            <span><span class="code-keyword">from</span> skimage <span class="code-keyword">import</span> measure</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">4</span>
-                            <span></span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">5</span>
-                            <span><span class="code-keyword">def</span> <span class="code-function">count_cells</span>(image_stack):</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">6</span>
-                            <span>    <span class="code-comment"># Process time-lapse frames</span></span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">7</span>
-                            <span>    results = []</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">8</span>
-                            <span>    <span class="code-keyword">for</span> frame <span class="code-keyword">in</span> image_stack:</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">9</span>
-                            <span>        labels = measure.label(frame)</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">10</span>
-                            <span>        props = measure.regionprops(labels)</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">11</span>
-                            <span>        results.append(<span class="code-function">len</span>(props))</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">12</span>
-                            <span>    <span class="code-keyword">return</span> pd.DataFrame(results)<span class="typing-cursor">|</span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="dna-card">
-                    <div class="dna-card-header">
-                        <div class="dna-card-icon"><i class="fas fa-dna"></i></div>
-                        <div>
-                            <div class="dna-card-title">Sequence Analysis</div>
-                            <div class="dna-card-subtitle">Processing genomic data</div>
-                        </div>
-                    </div>
-                    <div class="dna-sequence">
-                        <span class="base base-a">A</span>
-                        <span class="base base-t">T</span>
-                        <span class="base base-g">G</span>
-                        <span class="base base-c">C</span>
-                        <span class="base base-g">G</span>
-                        <span class="base base-a">A</span>
-                        <span class="base base-t">T</span>
-                        <span class="base base-c">C</span>
-                        <span class="base base-a">A</span>
-                        <span class="base base-g">G</span>
-                        <span class="base base-t">T</span>
-                        <span class="base base-c">C</span>
-                    </div>
-                    <div class="dna-bar">
-                        <div class="dna-bar-fill"></div>
-                    </div>
-                </div>
-            </div>
+<!-- RESEARCH -->
+<section class="section" id="research">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Research</span>
+      <h2>Questions I'm chasing.</h2>
+    </div>
+    <div class="research-grid">
+      <p class="research-statement reveal">The most pressing challenges in biomedical research aren't purely biological or purely computational — they live <span class="hl">in between</span>. My research builds the infrastructure and tooling that lets scientists ask harder questions of their data.</p>
+      <div class="interest-list reveal">
+        <div class="interest"><span class="n">01</span><div><h4>Can we make reproducibility the default?</h4><p>What does research infrastructure look like when data is organized, versioned, and queryable from the moment it's collected — not as an afterthought?</p></div></div>
+        <div class="interest"><span class="n">02</span><div><h4>What can biology teach us about building better systems?</h4><p>How do we translate the efficiency, resilience, and self-organization of biological systems into computational architectures and engineering design?</p></div></div>
+        <div class="interest"><span class="n">03</span><div><h4>What does it look like when scientists drive their own analysis?</h4><p>How do we build interfaces expressive enough that a researcher can explore a complex dataset end-to-end — without waiting on a software engineer?</p></div></div>
+        <div class="interest"><span class="n">04</span><div><h4>What patterns in neurological data are we missing at scale?</h4><p>As multi-study datasets in diseases like Alzheimer's grow, what computational approaches can surface cross-cohort signals that single-study analyses overlook?</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GITHUB
+<section class="section" id="github">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Open Source</span>
+      <h2>Building in public.</h2>
+      <p>Code contributions and projects on GitHub.</p>
+    </div>
+    <div class="gh-cards reveal">
+      <img
+        src="https://github-readme-stats.vercel.app/api?username=Takeya1&show_icons=true&theme=transparent&hide_border=true&text_color=64748b&title_color=b8742f&icon_color=b8742f&bg_color=00000000"
+        alt="Lesther's GitHub Stats"
+        class="gh-img"
+        loading="lazy"
+      />
+      <img
+        src="https://github-readme-stats.vercel.app/api/top-langs/?username=Takeya1&layout=compact&theme=transparent&hide_border=true&text_color=64748b&title_color=b8742f&bg_color=00000000"
+        alt="Top Languages"
+        class="gh-img"
+        loading="lazy"
+      />
+    </div>
+    <div class="gh-cta reveal">
+      <a class="btn btn-ghost" href="https://github.com/Takeya1" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.93.85.09-.66.35-1.12.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+        View GitHub profile
+      </a>
+    </div>
+  </div>
+</section> -->
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">Contact</span>
+        <h2>Let's build something at the intersection.</h2>
+        <p class="lede">Open to research opportunities, collaborations and software roles in computational biology and the life sciences.</p>
+        <div class="contact-links">
+          <a class="clink" href="mailto:lestherouma@gmail.com">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+            <span class="ct"><span class="k">Email</span><span class="v">lestherouma@gmail.com</span></span>
+            <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+          <a class="clink" href="https://linkedin.com/in/lesther-ouma-102a312b6" target="_blank" rel="noopener">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM3.5 8.5h3v12h-3v-12zm6 0h2.88v1.64h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v7.32h-3v-6.5c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.69-2.49 3.43v6.6h-3v-12z"/></svg></span>
+            <span class="ct"><span class="k">LinkedIn</span><span class="v">in/lesther-ouma-102a312b6</span></span>
+            <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </a>
+          <a class="clink" href="https://github.com/Takeya1" target="_blank" rel="noopener">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.93.85.09-.66.35-1.12.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg></span>
+            <span class="ct"><span class="k">GitHub</span><span class="v">@Takeya1</span></span>
+            <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+          </a>
         </div>
-    </section>
+      </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <p class="footer-text">&copy; 2026 Lesther Ouma.</p>
-            <div class="footer-social">
-                <a href="mailto:lestherouma@gmail.com" title="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="https://linkedin.com/in/lesther-ouma-102a312b6" target="_blank" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/Takeya1" target="_blank" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
+      <form class="form reveal" id="contactForm" action="https://formspree.io/f/mykpqley" method="POST" novalidate>
+        <div class="form-fields" id="formFields">
+          <div class="field" data-field="name">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" placeholder="Your name" autocomplete="name" />
+            <span class="msg">Please enter your name.</span>
+          </div>
+          <div class="field" data-field="email">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" />
+            <span class="msg">Please enter a valid email.</span>
+          </div>
+          <div class="field" data-field="message">
+            <label for="f-message">Message</label>
+            <textarea id="f-message" name="message" rows="4" placeholder="What would you like to work on together?"></textarea>
+            <span class="msg">Please add a short message.</span>
+          </div>
+          <button class="btn btn-primary btn-lg" type="submit">Send message
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
         </div>
-    </footer>
+        <div class="form-ok" id="formOk">
+          <span class="ok-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <h3>Message sent</h3>
+          <p>Thanks for reaching out — I'll get back to you soon.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
 
-    <script src="main.js"></script>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <span class="copy">© 2026 <b>Lesther Ouma</b> · Computational Biology &amp; Software Engineering</span>
+    <div class="socials">
+      <a href="mailto:lestherouma@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+      <a href="https://linkedin.com/in/lesther-ouma-102a312b6" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM3.5 8.5h3v12h-3v-12zm6 0h2.88v1.64h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v7.32h-3v-6.5c0-1.55-.03-3.54-2.16-3.54-2.16 0-2.49 1.69-2.49 3.43v6.6h-3v-12z"/></svg></a>
+      <a href="https://github.com/Takeya1" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.93.85.09-.66.35-1.12.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
 </body>
 </html>
